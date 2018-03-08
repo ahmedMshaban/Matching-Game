@@ -1,0 +1,28 @@
+/*General*/
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: #fff;
+  font-size: 0.875em;
+  letter-spacing: 0.063em;
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#6d327c), color-stop(#485DA6), color-stop(#00a1ba), color-stop(#00BF98), to(#36C486));
+  background-image: -webkit-linear-gradient(left bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
+  background-image: -o-linear-gradient(left bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
+  background-image: linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
+}
+
+/*Header*/
+.main-header .headline--lg {
+  color: #fff;
+  font-weight: 900;
+  font-size: 2.925em;
+  letter-spacing: 0.093em;
+  text-shadow: 2px 3px 0px #898999;
+  text-transform: uppercase;
+  text-align: center;
+}
