@@ -28,11 +28,74 @@ body {
 }
 
 /*Main playground*/
-.main-playground {
+.main-playground-container {
   background: #fff;
   max-width: 800px;
-  min-height: 500px;
   margin: 0 auto;
   box-shadow: 0 60px 135px rgba(0,0,0,0.14), 0 15px 65px rgba(0,0,0,0.14);
   border-radius: 10px;
+   -webkit-perspective: 800px;
+   -moz-perspective: 800px;
+   -o-perspective: 800px;
+   perspective: 800px;
+   position: relative;
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-wrap: wrap;
+   -ms-flex-wrap: wrap;
+   flex-wrap: wrap;
+}
+.main-playground-container .playground-cell {
+  margin: 10px;
+  background: pink;
+  border-radius: 10px;
+  height: 125px;
+  -webkit-transition: -webkit-transform 1s;
+  -moz-transition: -moz-transform 1s;
+  -o-transition: -o-transform 1s;
+  transition: transform 1s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-box-flex: 1 0 20%;
+  width: 25%;
+  -webkit-flex: 1 0 20%;
+  -ms-flex: 1 0 20%;
+  flex: 1 0 20%;
+}
+.playground-cell div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 125px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 140px;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+}
+.playground-cell .front {
+  background: red;
+}
+.playground-cell .back {
+    background: blue;
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+.playground-cell.flipped {
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
 }
