@@ -14,8 +14,17 @@ body {
   background-image: -webkit-linear-gradient(left bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
   background-image: -o-linear-gradient(left bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
   background-image: linear-gradient(to right top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
+
 }
 
+main {
+  padding-bottom: 2em;
+}
+
+img {
+  max-width: 100%;
+  margin: 0 auto;
+}
 /*Header*/
 .main-header .headline--lg {
   color: #fff;
@@ -25,6 +34,8 @@ body {
   text-shadow: 2px 3px 0px #898999;
   text-transform: uppercase;
   text-align: center;
+  margin: 0;
+  padding: 1em 0;
 }
 
 /*Main playground*/

@@ -40,9 +40,8 @@ function shuffle(array) {
 
 function distributionSymbols(array) {
   shuffle(symbols);
-  for (let i = 1; i <= array.length; i++){
-    console.log(array[i]);
-    $('.playground-cell:nth-child('+ i+') img').attr('src',array[i]);
+  for (let i = 0; i <= array.length; i++){
+    $('.playground-cell:nth-child('+ (i+1)+') img').attr('src',array[i]);
   }
 }
 
