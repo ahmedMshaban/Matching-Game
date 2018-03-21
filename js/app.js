@@ -5,6 +5,9 @@ let clicksCounts = 0;
 const symbols = ['images/boat.png','images/boat.png','images/building.png','images/building.png','images/daruma.png','images/daruma.png','images/doll.png','images/doll.png','images/star.png','images/star.png','images/teddy-bear.png','images/teddy-bear.png','images/toys.png','images/toys.png','images/tricycle.png','images/tricycle.png']
 let openCell = [];
 let timeExcuation;
+const modal = document.getElementById('resultModal');
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName('close')[0];
 
 
 function clickedCell(evt) {
@@ -15,45 +18,45 @@ function clickedCell(evt) {
   clicksCounts++;
   switch (clicksCounts) {
     case 8:
-      $(".star-rating span:last-child").removeClass("checked");
+      $('.star-rating span:last-child').removeClass('checked');
       break;
     case 24:
-      $(".star-rating span:nth-child(2)").removeClass("checked");
+      $('.star-rating span:nth-child(2)').removeClass('checked');
       break;
     case 32:
-      $(".star-rating span:first-child").removeClass("checked");
+      $('.star-rating span:first-child').removeClass('checked');
       break;
   }
 
   if(roundMoves === 0) {
     roundMoves ++;
-    $(evt.target).parent('.playground-cell').addClass('clicked');
-    $(evt.target).parent('.playground-cell').toggleClass('flipped');
-    openCell[0] = $(evt.target).siblings().children('img').attr('src');
+    $(evt.target).addClass('clicked');
+    $(evt.target).toggleClass('flipped');
+    openCell[0] = $(evt.target).children('img').attr('src');
   }
   else if(roundMoves === 1) {
     //Prevent more than 2 click on the same round
     roundMoves = 2;
-    $(evt.target).parent('.playground-cell').addClass('clicked');
-    $(evt.target).parent('.playground-cell').toggleClass('flipped');
-    openCell[1] = $(evt.target).siblings().children('img').attr('src');
+    $(evt.target).addClass('clicked');
+    $(evt.target).toggleClass('flipped');
+    openCell[1] = $(evt.target).children('img').attr('src');
     gameMoves ++;
     //Update game moves
-    $(".game-moves").text(gameMoves);
+    $('.game-moves').text(gameMoves);
     window.setTimeout(roundCheck, 1500);
   }
 }
 
 function roundCheck() {
   if(openCell[0] === openCell[1]) {
-    $( ".clicked" ).addClass('identical');
+    $( '.clicked' ).addClass('identical');
     gameEndCount ++;
     if (gameEndCount === 8) {
       gameEnd();
     }
   }
-  $(".main-playground-container .playground-cell").removeClass("flipped");
-  $(".main-playground-container .playground-cell").removeClass("clicked");
+  $('.main-playground-container .playground-cell').removeClass('flipped');
+  $('.main-playground-container .playground-cell').removeClass('clicked');
   //Reset the round
   roundMoves = 0;
   //Empty the aray
@@ -83,13 +86,13 @@ function distributionSymbols(array) {
 
 function timeCalculator() {
   let sec = 0;
-  function pad ( val ) { return val > 9 ? val : "0" + val; }
+  function pad ( val ) { return val > 9 ? val : '0' + val; }
   timeExcuation = setInterval( function(){
       if (gameEndCount === 8) {
         return;
       }
-      document.getElementById("seconds").innerHTML=pad(++sec%60);
-      document.getElementById("minutes").innerHTML=pad(parseInt(sec/60,10));
+      document.getElementById('seconds').innerHTML=pad(++sec%60);
+      document.getElementById('minutes').innerHTML=pad(parseInt(sec/60,10));
   }, 1000);
 
 }
@@ -99,30 +102,43 @@ function gameEnd(){
 }
 
 function gameResult() {
-  alert('Congratus your Win!!' );
-  alert(gameMoves);
+  $('.resault-moves').text('Your Moves: ' + gameMoves);
+  document.getElementById('resultModal').style.display = 'block';
+
 }
 
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    document.getElementById('resultModal').style.display = 'none';
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        document.getElementById('resultModal').style.display = 'none';
+    }
+}
 
 
 document.querySelector('.restart-game').addEventListener('click', function (evt) {
   gameMoves = 0;
-  $(".game-moves").text(gameMoves);
+  $('.game-moves').text(gameMoves);
   gameEndCount = 0;
   openCell = [];
-  $(".main-playground-container .playground-cell").removeClass("flipped");
-  $(".main-playground-container .playground-cell").removeClass("clicked");
-  $(".main-playground-container .playground-cell").removeClass("identical");
-  $(".star-rating span").addClass("checked");
+  $('.main-playground-container .playground-cell').removeClass('flipped');
+  $('.main-playground-container .playground-cell').removeClass('clicked');
+  $('.main-playground-container .playground-cell').removeClass('identical');
+  $('.star-rating span').addClass('checked');
   clearInterval(timeExcuation);
-  $("#seconds").text("00");
-  $("#minutes").text("00");
+  $('#seconds').text('00');
+  $('#minutes').text('00');
   window.setTimeout(distributionSymbols, 500,symbols);
 });
 
 
 document.querySelector('.main-playground-container').addEventListener('click', function (evt) {
-     if($(evt.target).attr('class') === 'playground-cell-front' && roundMoves !== 2) {
+     if($(evt.target).attr('class') === 'playground-cell' && roundMoves !== 2) {
        clickedCell(evt);
     }
 });
