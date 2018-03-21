@@ -14,7 +14,7 @@ function clickedCell(evt) {
 
   clicksCounts++;
   switch (clicksCounts) {
-    case 2:
+    case 8:
       $(".star-rating span:last-child").removeClass("checked");
       break;
     case 24:
