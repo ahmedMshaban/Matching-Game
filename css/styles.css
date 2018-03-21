@@ -108,12 +108,10 @@ img {
   -webkit-flex: 1 0 20%;
   -ms-flex: 1 0 20%;
   flex: 1 0 20%;
-
 }
 
 .playground-cell img {
-
-visibility: hidden;
+  visibility: hidden;
 }
 .playground-cell.flipped,
 .playground-cell.identical {
@@ -129,6 +127,7 @@ visibility: hidden;
 .playground-cell.flipped img ,
 .playground-cell.identical img {
    visibility: visible;
+   transition-delay: .4s;
 }
 .star-rating .checked {
   color: orange;

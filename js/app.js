@@ -43,7 +43,7 @@ function clickedCell(evt) {
     gameMoves ++;
     //Update game moves
     $('.game-moves').text(gameMoves);
-    window.setTimeout(roundCheck, 1500);
+    window.setTimeout(roundCheck, 1000);
   }
 }
 
