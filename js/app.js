@@ -1,6 +1,7 @@
 let roundMoves = 0;
 let gameMoves = 0;
 let gameEndCount = 0;
+let clicksCounts = 0;
 const symbols = ['images/boat.png','images/boat.png','images/building.png','images/building.png','images/daruma.png','images/daruma.png','images/doll.png','images/doll.png','images/star.png','images/star.png','images/teddy-bear.png','images/teddy-bear.png','images/toys.png','images/toys.png','images/tricycle.png','images/tricycle.png']
 let openCell = [];
 let timeExcuation;
@@ -9,6 +10,19 @@ let timeExcuation;
 function clickedCell(evt) {
   if(gameMoves === 0 && roundMoves === 0) {
     timeCalculator();
+  }
+
+  clicksCounts++;
+  switch (clicksCounts) {
+    case 2:
+      $(".star-rating span:last-child").removeClass("checked");
+      break;
+    case 24:
+      $(".star-rating span:nth-child(2)").removeClass("checked");
+      break;
+    case 32:
+      $(".star-rating span:first-child").removeClass("checked");
+      break;
   }
 
   if(roundMoves === 0) {
@@ -89,6 +103,8 @@ function gameResult() {
   alert(gameMoves);
 }
 
+
+
 document.querySelector('.restart-game').addEventListener('click', function (evt) {
   gameMoves = 0;
   $(".game-moves").text(gameMoves);
@@ -97,6 +113,7 @@ document.querySelector('.restart-game').addEventListener('click', function (evt)
   $(".main-playground-container .playground-cell").removeClass("flipped");
   $(".main-playground-container .playground-cell").removeClass("clicked");
   $(".main-playground-container .playground-cell").removeClass("identical");
+  $(".star-rating span").addClass("checked");
   clearInterval(timeExcuation);
   $("#seconds").text("00");
   $("#minutes").text("00");
