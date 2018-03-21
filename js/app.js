@@ -123,6 +123,8 @@ window.onclick = function(event) {
 
 document.querySelector('.restart-game').addEventListener('click', function (evt) {
   gameMoves = 0;
+  roundMoves = 0;
+  clicksCounts = 0;
   $('.game-moves').text(gameMoves);
   gameEndCount = 0;
   openCell = [];
@@ -133,7 +135,6 @@ document.querySelector('.restart-game').addEventListener('click', function (evt)
   clearInterval(timeExcuation);
   $('#seconds').text('00');
   $('#minutes').text('00');
-  window.setTimeout(distributionSymbols, 500,symbols);
 });
 
 
