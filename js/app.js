@@ -7,7 +7,6 @@ let openCell = [];
 let timeExcuation;
 
 
-
 function clickedCell(evt) {
   if(gameMoves === 0 && roundMoves === 0) {
     timeCalculator();
@@ -16,13 +15,13 @@ function clickedCell(evt) {
   clicksCounts++;
   switch (clicksCounts) {
     case 17:
-      $('.star-rating span:last-child').removeClass('checked');
+      $('.star-rating span:nth-child(3)').removeClass('checked');
       break;
     case 25:
       $('.star-rating span:nth-child(2)').removeClass('checked');
       break;
     case 33:
-      $('.star-rating span:first-child').removeClass('checked');
+      $('.star-rating span:nth-child(1)').removeClass('checked');
       break;
   }
 
@@ -95,27 +94,28 @@ function timeCalculator() {
 }
 
 function gameResult() {
+  $('#resultModal').css('display','block');
   $('.resault-moves').text('Your Moves: ' + gameMoves);
-  document.getElementById('resultModal').style.display = 'block';
-
+  $('.resault-time').text('Your time: ' + document.getElementById('minutes').innerHTML + " : " + document.getElementById('seconds').innerHTML );
 }
 
 
 // When the user clicks on <span> (x), close the modal
 document.querySelector('.close').addEventListener('click', function () {
-  $("#resultModal").css("display","none");
+  $('#resultModal').css('display','none');
 });
 
 
 // When the user clicks anywhere outside of the modal, close it
 $(window).click(function(evt) {
-    if (evt.target == modal) {
-          $("#resultModal").css("display","none");
+    if (evt.target == $('#resultModal')[0]) {
+          $('#resultModal').css('display','none');
     }
 });
 
-
-document.querySelector('.restart-game').addEventListener('click', function (evt) {
+$(".restart-game").each(function () {
+  let restartGame = this;
+  restartGame.addEventListener("click", function(evt) {
   gameMoves = 0;
   roundMoves = 0;
   clicksCounts = 0;
@@ -128,8 +128,9 @@ document.querySelector('.restart-game').addEventListener('click', function (evt)
   $('#seconds').text('00');
   $('#minutes').text('00');
   window.setTimeout(distributionSymbols, 1000,symbols);
+  $('#resultModal').css('display','none');
 });
-
+});
 
 document.querySelector('.main-playground-container').addEventListener('click', function (evt) {
      if($(evt.target).attr('class') === 'playground-cell' && roundMoves !== 2) {
