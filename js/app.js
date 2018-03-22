@@ -5,9 +5,7 @@ let clicksCounts = 0;
 const symbols = ['images/boat.png','images/boat.png','images/building.png','images/building.png','images/daruma.png','images/daruma.png','images/doll.png','images/doll.png','images/star.png','images/star.png','images/teddy-bear.png','images/teddy-bear.png','images/toys.png','images/toys.png','images/tricycle.png','images/tricycle.png']
 let openCell = [];
 let timeExcuation;
-const modal = document.getElementById('resultModal');
-// Get the <span> element that closes the modal
-const span = document.getElementsByClassName('close')[0];
+
 
 
 function clickedCell(evt) {
@@ -17,13 +15,13 @@ function clickedCell(evt) {
 
   clicksCounts++;
   switch (clicksCounts) {
-    case 8:
+    case 17:
       $('.star-rating span:last-child').removeClass('checked');
       break;
-    case 24:
+    case 25:
       $('.star-rating span:nth-child(2)').removeClass('checked');
       break;
-    case 32:
+    case 33:
       $('.star-rating span:first-child').removeClass('checked');
       break;
   }
@@ -49,14 +47,13 @@ function clickedCell(evt) {
 
 function roundCheck() {
   if(openCell[0] === openCell[1]) {
-    $( '.clicked' ).addClass('identical');
+    $( '.clicked' ).addClass('identical pulse');
     gameEndCount ++;
     if (gameEndCount === 8) {
-      gameEnd();
+      gameResult();
     }
   }
-  $('.main-playground-container .playground-cell').removeClass('flipped');
-  $('.main-playground-container .playground-cell').removeClass('clicked');
+  $('.main-playground-container .playground-cell').removeClass('flipped clicked');
   //Reset the round
   roundMoves = 0;
   //Empty the aray
@@ -97,10 +94,6 @@ function timeCalculator() {
 
 }
 
-function gameEnd(){
-  gameResult();
-}
-
 function gameResult() {
   $('.resault-moves').text('Your Moves: ' + gameMoves);
   document.getElementById('resultModal').style.display = 'block';
@@ -109,16 +102,17 @@ function gameResult() {
 
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    document.getElementById('resultModal').style.display = 'none';
-}
+document.querySelector('.close').addEventListener('click', function () {
+  $("#resultModal").css("display","none");
+});
+
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        document.getElementById('resultModal').style.display = 'none';
+$(window).click(function(evt) {
+    if (evt.target == modal) {
+          $("#resultModal").css("display","none");
     }
-}
+});
 
 
 document.querySelector('.restart-game').addEventListener('click', function (evt) {
@@ -128,13 +122,12 @@ document.querySelector('.restart-game').addEventListener('click', function (evt)
   $('.game-moves').text(gameMoves);
   gameEndCount = 0;
   openCell = [];
-  $('.main-playground-container .playground-cell').removeClass('flipped');
-  $('.main-playground-container .playground-cell').removeClass('clicked');
-  $('.main-playground-container .playground-cell').removeClass('identical');
+  $('.main-playground-container .playground-cell').removeClass('flipped clicked identical pulse');
   $('.star-rating span').addClass('checked');
   clearInterval(timeExcuation);
   $('#seconds').text('00');
   $('#minutes').text('00');
+  window.setTimeout(distributionSymbols, 1000,symbols);
 });
 
 
