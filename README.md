@@ -3,7 +3,8 @@
 ## Table of Contents
 
 * [How The Game Works](#how-the-game-works)
-* [Game Functionality](#game-functionality) 
+* [Game Functionality](#game-functionality)
+* [Code Dependencies](#code-dependencies)
 
 ## How The Game Works
 
@@ -34,7 +35,12 @@ When the player start to click on the card and make first guess the time tracker
 ### Stars
 -When the game start the player will have 3 stars with (orange color) after 17 guesses (17 clicks on the cards) the stars will decrease by 1 so the user will have 2 stars with orange color only.
 -After after another 8 guesses (25 guess on the total) the stars will decrease by 1 so the user will have 1 star with orange color only.
--After after another 8 guesses (33 guess on the total) the stars will decrease by 1 so the user will have 0 star.
 
 ### Restart
 When the player click on the restart button the game will start over and will change the cards places.
+
+## Code Dependencies
+1- normalize.css(https://necolas.github.io/normalize.css/).
+2- Montserrat font family (https://fonts.googleapis.com/css?family=Montserrat:400,900).
+3- Font awesome(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css).
+4- Jquery (https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js).

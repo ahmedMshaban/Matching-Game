@@ -24,9 +24,6 @@ function clickedCell(evt) {
 		case 25:
 			$('.star-rating span:nth-child(2)').removeClass('checked');
 			break;
-		case 33:
-			$('.star-rating span:nth-child(1)').removeClass('checked');
-			break;
 	}
 
 	if (roundMoves === 0) {
